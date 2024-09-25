@@ -50,7 +50,7 @@ body {
     border-radius: 25px;
     border: none;
     background-color: #C0C0C0;
-    color: white;
+    color: black;
     font-size: 16px;
     text-align: center;
 }

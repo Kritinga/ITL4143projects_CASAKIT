@@ -38,7 +38,7 @@ function isLockedOut() {
     }
     return false;
 }
-
+ 
 if (isset($_POST['usubmit'])) {
     // Check if the user is currently locked out
     if (isLockedOut()) {
@@ -48,10 +48,13 @@ if (isset($_POST['usubmit'])) {
         $ucode = htmlspecialchars($_POST['ucode']);
         $upass = htmlspecialchars($_POST['upass']);
 
+    $pass = md5($_POST['upass']);
+
         if (!empty($ucode) && !empty($upass)) {
             // Use prepared statements to avoid SQL injection
+            
             $stmt = $con->prepare("SELECT * FROM applicants WHERE stuname = ? AND password = ?");
-            $stmt->bind_param("ss", $ucode, $upass);
+            $stmt->bind_param("ss", $ucode, $pass);
             $stmt->execute();
             $result = $stmt->get_result();
             $TR = $result->num_rows;
@@ -113,8 +116,8 @@ if (isset($_POST['usubmit'])) {
                 </div>
                 <div class="submit-group">
                     <button type="submit" name="usubmit">Login</button>
-                </div>
-
+                </div><br>
+                    <p style="color: white;">Don't you have an account?<a style="color: white;" href="Register">Register Here</a></p> 
                     <?php if ($error != "") { ?>
                         <p class="error"><?= $error ?></p>
                     <?php } ?>

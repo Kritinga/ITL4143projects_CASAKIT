@@ -9,6 +9,9 @@ switch ($url) {
 	case 'LoginHere':
 		include 'Casakit_login.php';
 		break;
+		case 'Register':
+		include 'Register.php';
+		break;
 	default:
 		echo "<script>window.location.href='LoginHere'</script>";
 		break;
